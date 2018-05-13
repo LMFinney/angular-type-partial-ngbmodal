@@ -26,53 +26,22 @@ export class ModalService {
   confirm(
     prompt = 'Really?', title = 'Confirm'
   ): Observable<boolean> {
-    const modal = this.ngbModal.open(
-      ConfirmDialogComponent, { backdrop: 'static' });
-
-    modal.componentInstance.prompt = prompt;
-    modal.componentInstance.title = title;
-
-    return from(modal.result).pipe(
-      catchError(error => {
-        console.warn(error);
-        return of(undefined);
-      })
-    );
+    return this.custom<ConfirmDialogComponent, boolean>(
+      ConfirmDialogComponent, { title, prompt });
   }
 
   input(
     message: string, initialValue: string, title = 'Input'
   ): Observable<string> {
-    const modal = this.ngbModal.open(
-      InputDialogComponent, { backdrop: 'static' });
-
-    modal.componentInstance.message = message;
-    modal.componentInstance.initialValue = initialValue;
-    modal.componentInstance.title = title;
-
-    return from(modal.result).pipe(
-      catchError(error => {
-        console.warn(error);
-        return of(undefined);
-      })
-    );
+    return this.custom<InputDialogComponent, string>(
+      InputDialogComponent, { title, initialValue, message });
   }
 
   message(
     message: string, title = 'Message'
   ): Observable<boolean> {
-    const modal = this.ngbModal.open(
-      MessageDialogComponent, { backdrop: 'static' });
-
-    modal.componentInstance.message = message;
-    modal.componentInstance.title = title;
-
-    return from(modal.result).pipe(
-      catchError(error => {
-        console.warn(error);
-        return of(undefined);
-      })
-    );
+    return this.custom<MessageDialogComponent, boolean>(
+      MessageDialogComponent, { title, message });
   }
 
   custom<T, R>(
