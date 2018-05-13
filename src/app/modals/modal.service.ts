@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import {
   NgbModal,
   NgbModalOptions
@@ -76,7 +76,7 @@ export class ModalService {
   }
 
   custom<T, R>(
-    content: any,
+    content: Type<T>,
     config?: Partial<T>,
     options?: NgbModalOptions
   ): Observable<R> {
