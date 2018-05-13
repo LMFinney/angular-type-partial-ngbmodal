@@ -75,9 +75,9 @@ export class ModalService {
     );
   }
 
-  custom<R>(
+  custom<T, R>(
     content: any,
-    config?: { [index: string]: any; },
+    config?: Partial<T>,
     options?: NgbModalOptions
   ): Observable<R> {
     // we use a static backdrop by default,
