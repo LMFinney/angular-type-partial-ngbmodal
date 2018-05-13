@@ -5,6 +5,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import {
+  CustomDialogComponent
+} from './custom-dialog/custom-dialog.component';
+import {
   ConfirmDialogComponent
 } from './modals/confirm-dialog/confirm-dialog.component';
 import {
@@ -19,7 +22,8 @@ import {
     AppComponent,
     ConfirmDialogComponent,
     InputDialogComponent,
-    MessageDialogComponent
+    MessageDialogComponent,
+    CustomDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import {
   entryComponents: [
     ConfirmDialogComponent,
     InputDialogComponent,
-    MessageDialogComponent
+    MessageDialogComponent,
+    CustomDialogComponent
   ],
   bootstrap: [AppComponent]
 })

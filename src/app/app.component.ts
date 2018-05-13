@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { ModalService } from './modals/modal.service';
+import {
+  CustomDialogComponent
+} from './custom-dialog/custom-dialog.component';
+import {
+  ModalService
+} from './modals/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +17,7 @@ export class AppComponent {
   confirmedResult: boolean;
   inputResult: string;
   messageResult: boolean;
+  customResult: string;
 
   constructor(private modalService: ModalService) { }
 
@@ -45,6 +51,18 @@ export class AppComponent {
     ).subscribe(result => {
         console.log({ messageResult: result });
         this.messageResult = result;
+      });
+  }
+
+  openCustomDialog() {
+    this.modalService.custom(
+      CustomDialogComponent,
+      { flavors: ['Vanilla', 'Chocolate', 'Rocky Road'] }
+    ).pipe(
+        take(1) // take() manages unsubscription for us
+      ).subscribe(result => {
+        console.log({ customResult: result });
+        this.customResult = result;
       });
   }
 }

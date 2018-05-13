@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModal,
+  NgbModalOptions
+} from '@ng-bootstrap/ng-bootstrap';
 import { Observable, from, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -63,6 +66,29 @@ export class ModalService {
 
     modal.componentInstance.message = message;
     modal.componentInstance.title = title;
+
+    return from(modal.result).pipe(
+      catchError(error => {
+        console.warn(error);
+        return of(undefined);
+      })
+    );
+  }
+
+  custom(
+    content: any,
+    config?: { [index: string]: any; },
+    options?: NgbModalOptions
+  ): Observable<any> {
+    // we use a static backdrop by default,
+    // but allow the user to set anything in the options
+    const modal = this.ngbModal.open(
+      content,
+      { backdrop: 'static', ...options }
+    );
+
+    // copy the config values (if any) into the component
+    Object.assign(modal.componentInstance, config);
 
     return from(modal.result).pipe(
       catchError(error => {
