@@ -55,7 +55,7 @@ export class AppComponent {
   }
 
   openCustomDialog() {
-    this.modalService.custom(
+    this.modalService.custom<string>(
       CustomDialogComponent,
       { flavors: ['Vanilla', 'Chocolate', 'Rocky Road'] }
     ).pipe(

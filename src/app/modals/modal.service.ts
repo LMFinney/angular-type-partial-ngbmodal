@@ -75,11 +75,11 @@ export class ModalService {
     );
   }
 
-  custom(
+  custom<R>(
     content: any,
     config?: { [index: string]: any; },
     options?: NgbModalOptions
-  ): Observable<any> {
+  ): Observable<R> {
     // we use a static backdrop by default,
     // but allow the user to set anything in the options
     const modal = this.ngbModal.open(
